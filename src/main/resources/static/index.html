@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>海鸥旅游</title>
+<style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+	<div id="app">
+		<div id="map"></div>
+		<p><h-button style="position:absolute" color="primary" @click="move()">打开vue弹框</h-button></p>
+	</div>
+</body>
+<script src='js/vue/vue.js'></script>
+<script src='js/heyui/heyui.js'></script>
+<script src='js/mapbox/0.53.0/mapbox-gl.js'></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link href='css/heyui/heyui.css' rel='stylesheet' />
+<link href='css/mapbox/0.53.0/mapbox-gl.css' rel='stylesheet' />
+<script>
+	var app = new Vue({
+		el:"#app",
+		data: {
+			map:null
+		},
+		mounted: function(){
+			this.map = new mapboxgl.Map({
+				container: 'map', // container id
+			    style: 'http://192.168.1.235:8080/styles/klokantech-basic/style.json', // stylesheet location
+			    center: [126.988464,37.560678], // starting position [lng, lat]
+			    zoom: 8, // starting zoom
+				attributionControl: false,
+				logoPosition: 'bottom-left'
+			});
+		},
+		methods: {
+			move() {
+				this.map.flyTo({center:[126.788464,37.360678],zoom:9});
+			},
+			position(json){
+				
+			}
+		}
+	});
+</script>
+</html>
